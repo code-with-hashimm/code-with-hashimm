@@ -1,52 +1,89 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 320" width="490" height="320">
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="376" viewBox="0 0 480 376">
+  <defs>
+    <linearGradient id="ibg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#111722"/>
+      <stop offset="1" stop-color="#0d1117"/>
+    </linearGradient>
+  </defs>
   <style>
 
-    .card-bg { fill: #0d1117; stroke: #30363d; stroke-width: 1px; }
-    .title-bar { fill: #161b22; }
-    .dot-red { fill: #ff5f56; }
-    .dot-yellow { fill: #ffbd2e; }
-    .dot-green { fill: #27c93f; }
-    .title-text { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; font-size: 12px; fill: #8b949e; font-weight: 600; }
-    .key { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; font-size: 13px; fill: #58a6ff; font-weight: bold; }
-    .value { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; font-size: 13px; fill: #c9d1d9; }
-    .prompt { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; font-size: 13px; fill: #79c0ff; font-weight: bold; }
+    .card-bg { fill: url(#ibg); }
+    .border-line { fill: none; stroke: #30363d; }
+    .header-line { stroke: #30363d; }
+    .divider { stroke: #30363d; stroke-opacity: 0.8; }
+    .title-text { fill: #7d8590; font-size: 12px; text-anchor: middle; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .header-user { font-size: 14px; font-weight: 700; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .section-title { fill: #58a6ff; font-size: 12.5px; font-weight: 700; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .key-title { font-size: 12.5px; font-weight: 700; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .val-text { fill: #c9d1d9; font-size: 12.5px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
     
-        @keyframes fadeInSlide {
-          0% { opacity: 0; transform: translateY(8px); }
-          100% { opacity: 1; transform: translateY(0); }
+        @keyframes fadeSlide {
+          0% { opacity: 0; transform: translateY(5px); }
+          100% { opacity: 1; transform: translateY(0px); }
         }
-        .animated-row {
+        .anim-group {
           opacity: 0;
-          animation: fadeInSlide 0.4s ease-out forwards;
+          animation: fadeSlide 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
         
   </style>
-  <rect width="490" height="320" class="card-bg" rx="10"/>
-  <path d="M 0 10 Q 0 0 10 0 L 480 0 Q 490 0 490 10 L 490 35 L 0 35 Z" class="title-bar"/>
-  <circle cx="20" cy="18" r="5" class="dot-red"/>
-  <circle cx="36" cy="18" r="5" class="dot-yellow"/>
-  <circle cx="52" cy="18" r="5" class="dot-green"/>
-  <text x="72" y="22" class="title-text">hashim@dev-box:~ (neofetch)</text>
-  <g transform="translate(25, 0)">
-    <g class="animated-row" style="animation-delay: 0.2s;">
-      <text x="0" y="80" class="prompt">&#10095;</text>
-      <text x="20" y="80" class="key">Now:</text>
-      <text x="120" y="80" class="value">Building CampusKey Platform</text>
-    </g>
-    <g class="animated-row" style="animation-delay: 0.35s;">
-      <text x="0" y="112" class="prompt">&#10095;</text>
-      <text x="20" y="112" class="key">Prev:</text>
-      <text x="120" y="112" class="value">Full-Stack Web Apps & UI/UX</text>
-    </g>
-    <g class="animated-row" style="animation-delay: 0.5s;">
-      <text x="0" y="144" class="prompt">&#10095;</text>
-      <text x="20" y="144" class="key">Stack:</text>
-      <text x="120" y="144" class="value">Next.js, React, TypeScript, Tailwind</text>
-    </g>
-    <g class="animated-row" style="animation-delay: 0.65s;">
-      <text x="0" y="176" class="prompt">&#10095;</text>
-      <text x="20" y="176" class="key">Highlights:</text>
-      <text x="120" y="176" class="value">AI Integration, Web Automation, Python</text>
-    </g>
+  <rect width="480" height="376" rx="12" class="card-bg"/>
+  <rect x="0.5" y="0.5" width="479" height="375" rx="12" class="border-line"/>
+  <line x1="0" y1="30" x2="480" y2="30" class="header-line"/>
+  <circle cx="20" cy="15.0" r="5" fill="#ff5f56"/>
+  <circle cx="36" cy="15.0" r="5" fill="#ffbd2e"/>
+  <circle cx="52" cy="15.0" r="5" fill="#27c93f"/>
+  <text x="240.0" y="19.0" class="title-text">hashim@github: ~$ neofetch</text>
+  <g class="anim-group" style="animation-delay: 0.15s;">
+    <text x="20" y="60.0" class="header-user"><tspan fill="#3fb950">hashim</tspan><tspan fill="#7d8590">@</tspan><tspan fill="#22d3ee">github</tspan></text>
+    <line x1="140" y1="56.0" x2="460" y2="56.0" class="divider"/>
+  </g>
+  <g class="anim-group" style="animation-delay: 0.21s;">
+    <text x="20" y="80.5" fill="#ffa657" class="key-title">Now</text>
+    <text x="112" y="80.5" class="val-text">Full-Stack Web Developer</text>
+  </g>
+  <g class="anim-group" style="animation-delay: 0.27s;">
+    <text x="20" y="101.0" fill="#ffa657" class="key-title">Prev</text>
+    <text x="112" y="101.0" class="val-text">Frontend & UI/UX Specialist</text>
+  </g>
+  <g class="anim-group" style="animation-delay: 0.33s;">
+    <text x="20" y="121.5" fill="#ffa657" class="key-title">Also</text>
+    <text x="112" y="121.5" class="val-text">Building CampusKey Platform</text>
+  </g>
+  <g class="anim-group" style="animation-delay: 0.39s;">
+    <text x="20" y="142.0" fill="#ffa657" class="key-title">Edu</text>
+    <text x="112" y="142.0" class="val-text">Computer Science Student</text>
+  </g>
+  <g class="anim-group" style="animation-delay: 0.45s;">
+    <text x="20" y="172.8" class="section-title">&#8212; Stack</text>
+    <line x1="85" y1="168.8" x2="460" y2="168.8" class="divider"/>
+  </g>
+  <g class="anim-group" style="animation-delay: 0.51s;">
+    <text x="20" y="193.2" fill="#ffa657" class="key-title">Frontend</text>
+    <text x="112" y="193.2" class="val-text">React, Next.js, TypeScript, Tailwind CSS</text>
+  </g>
+  <g class="anim-group" style="animation-delay: 0.57s;">
+    <text x="20" y="213.8" fill="#ffa657" class="key-title">Backend</text>
+    <text x="112" y="213.8" class="val-text">Node.js, Express, Python, Supabase</text>
+  </g>
+  <g class="anim-group" style="animation-delay: 0.63s;">
+    <text x="20" y="234.2" fill="#ffa657" class="key-title">AI / ML</text>
+    <text x="112" y="234.2" class="val-text">Vercel AI SDK, LangChain, Local LLMs</text>
+  </g>
+  <g class="anim-group" style="animation-delay: 0.69s;">
+    <text x="20" y="254.8" fill="#ffa657" class="key-title">Tools</text>
+    <text x="112" y="254.8" class="val-text">Git, Docker, Vercel, Cursor IDE</text>
+  </g>
+  <g class="anim-group" style="animation-delay: 0.75s;">
+    <text x="20" y="285.5" class="section-title">&#8212; Highlights</text>
+    <line x1="112" y1="281.5" x2="460" y2="281.5" class="divider"/>
+  </g>
+  <g class="anim-group" style="animation-delay: 0.81s;">
+    <circle cx="23" cy="302.0" r="2.5" fill="#3fb950"/>
+    <text x="34" y="306.0" class="val-text">Building student-focused web apps & tools</text>
+  </g>
+  <g class="anim-group" style="animation-delay: 0.87s;">
+    <circle cx="23" cy="322.5" r="2.5" fill="#3fb950"/>
+    <text x="34" y="326.5" class="val-text">Focused on AI integration & modern UX</text>
   </g>
 </svg>

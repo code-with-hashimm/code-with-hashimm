@@ -1,14 +1,13 @@
 ﻿import os
 
 def generate_info_card(output_path="info-card.svg"):
-    # Customize your profile information here!
     card_data = [
         ("OS", "Developer Workstation v2.6"),
         ("Host", "Next.js / React / Tailwind CSS"),
         ("Role", "Full-Stack Web Developer"),
         ("Stack", "TypeScript, Python, Supabase, Vercel"),
         ("Current", "Building CampusKey Platform"),
-        ("Status", "Optimizing UI/UX & AI Workflows 🚀")
+        ("Status", "Optimizing UI/UX & AI Workflows")
     ]
 
     width = 490
@@ -28,7 +27,6 @@ def generate_info_card(output_path="info-card.svg"):
         '    .key { font-family: "Fira Code", Monaco, Consolas, monospace; font-size: 13px; fill: #58a6ff; font-weight: bold; }',
         '    .value { font-family: "Fira Code", Monaco, Consolas, monospace; font-size: 13px; fill: #c9d1d9; }',
         '    .prompt { font-family: "Fira Code", Monaco, Consolas, monospace; font-size: 13px; fill: #79c0ff; font-weight: bold; }',
-        '    .fade-line { opacity: 0; }',
         '  </style>',
         f'  <rect width="{width}" height="{height}" class="card-bg" rx="10"/>',
         f'  <path d="M 0 10 Q 0 0 10 0 L {width-10} 0 Q {width} 0 {width} 10 L {width} 35 L 0 35 Z" class="title-bar"/>',
@@ -40,15 +38,14 @@ def generate_info_card(output_path="info-card.svg"):
         '  <g transform="translate(25, 0)">'
     ]
 
-    # Staggered fade-in animation for each info line
     for i, (key, value) in enumerate(card_data):
         y_pos = start_y + (i * line_height)
         delay = round(0.2 + (i * 0.15), 2)
         
-        svg.append(f'    <g class="fade-line">')
+        svg.append(f'    <g opacity="0">')
         svg.append(f'      <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="{delay}s" fill="freeze" />')
         svg.append(f'      <animateTransform attributeName="transform" type="translate" from="0, 8" to="0, 0" dur="0.4s" begin="{delay}s" fill="freeze" />')
-        svg.append(f'      <text x="0" y="{y_pos}" class="prompt">&gt;</text>')
+        svg.append(f'      <text x="0" y="{y_pos}" class="prompt">&#10095;</text>')
         svg.append(f'      <text x="20" y="{y_pos}" class="key">{key}:</text>')
         svg.append(f'      <text x="110" y="{y_pos}" class="value">{value}</text>')
         svg.append(f'    </g>')
@@ -58,7 +55,7 @@ def generate_info_card(output_path="info-card.svg"):
 
     with open(output_path, "w", encoding="utf-8") as f:
         f.write("\n".join(svg))
-    print(f"Success! Generated neofetch info card at {output_path}")
+    print(f"Success! Re-generated clean info card SVG at {output_path}")
 
 if __name__ == "__main__":
     generate_info_card("info-card.svg")

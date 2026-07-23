@@ -9,7 +9,6 @@
     .key { font-family: "Fira Code", Monaco, Consolas, monospace; font-size: 13px; fill: #58a6ff; font-weight: bold; }
     .value { font-family: "Fira Code", Monaco, Consolas, monospace; font-size: 13px; fill: #c9d1d9; }
     .prompt { font-family: "Fira Code", Monaco, Consolas, monospace; font-size: 13px; fill: #79c0ff; font-weight: bold; }
-    .fade-line { opacity: 0; }
   </style>
   <rect width="490" height="320" class="card-bg" rx="10"/>
   <path d="M 0 10 Q 0 0 10 0 L 480 0 Q 490 0 490 10 L 490 35 L 0 35 Z" class="title-bar"/>
@@ -19,47 +18,47 @@
   <circle cx="52" cy="18" r="5" class="dot-green"/>
   <text x="72" y="22" class="title-text">hashim@dev-box:~ (neofetch)</text>
   <g transform="translate(25, 0)">
-    <g class="fade-line">
+    <g opacity="0">
       <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="0.2s" fill="freeze" />
       <animateTransform attributeName="transform" type="translate" from="0, 8" to="0, 0" dur="0.4s" begin="0.2s" fill="freeze" />
-      <text x="0" y="75" class="prompt">&gt;</text>
+      <text x="0" y="75" class="prompt">&#10095;</text>
       <text x="20" y="75" class="key">OS:</text>
       <text x="110" y="75" class="value">Developer Workstation v2.6</text>
     </g>
-    <g class="fade-line">
+    <g opacity="0">
       <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="0.35s" fill="freeze" />
       <animateTransform attributeName="transform" type="translate" from="0, 8" to="0, 0" dur="0.4s" begin="0.35s" fill="freeze" />
-      <text x="0" y="103" class="prompt">&gt;</text>
+      <text x="0" y="103" class="prompt">&#10095;</text>
       <text x="20" y="103" class="key">Host:</text>
       <text x="110" y="103" class="value">Next.js / React / Tailwind CSS</text>
     </g>
-    <g class="fade-line">
+    <g opacity="0">
       <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="0.5s" fill="freeze" />
       <animateTransform attributeName="transform" type="translate" from="0, 8" to="0, 0" dur="0.4s" begin="0.5s" fill="freeze" />
-      <text x="0" y="131" class="prompt">&gt;</text>
+      <text x="0" y="131" class="prompt">&#10095;</text>
       <text x="20" y="131" class="key">Role:</text>
       <text x="110" y="131" class="value">Full-Stack Web Developer</text>
     </g>
-    <g class="fade-line">
+    <g opacity="0">
       <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="0.65s" fill="freeze" />
       <animateTransform attributeName="transform" type="translate" from="0, 8" to="0, 0" dur="0.4s" begin="0.65s" fill="freeze" />
-      <text x="0" y="159" class="prompt">&gt;</text>
+      <text x="0" y="159" class="prompt">&#10095;</text>
       <text x="20" y="159" class="key">Stack:</text>
       <text x="110" y="159" class="value">TypeScript, Python, Supabase, Vercel</text>
     </g>
-    <g class="fade-line">
+    <g opacity="0">
       <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="0.8s" fill="freeze" />
       <animateTransform attributeName="transform" type="translate" from="0, 8" to="0, 0" dur="0.4s" begin="0.8s" fill="freeze" />
-      <text x="0" y="187" class="prompt">&gt;</text>
+      <text x="0" y="187" class="prompt">&#10095;</text>
       <text x="20" y="187" class="key">Current:</text>
       <text x="110" y="187" class="value">Building CampusKey Platform</text>
     </g>
-    <g class="fade-line">
+    <g opacity="0">
       <animate attributeName="opacity" from="0" to="1" dur="0.4s" begin="0.95s" fill="freeze" />
       <animateTransform attributeName="transform" type="translate" from="0, 8" to="0, 0" dur="0.4s" begin="0.95s" fill="freeze" />
-      <text x="0" y="215" class="prompt">&gt;</text>
+      <text x="0" y="215" class="prompt">&#10095;</text>
       <text x="20" y="215" class="key">Status:</text>
-      <text x="110" y="215" class="value">Optimizing UI/UX & AI Workflows 🚀</text>
+      <text x="110" y="215" class="value">Optimizing UI/UX & AI Workflows</text>
     </g>
   </g>
 </svg>

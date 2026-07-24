@@ -1,7 +1,5 @@
 ﻿<div align="center">
 
-  <br><br>
-
   <h3><code>hashim@github ~ $ whoami</code></h3>
   <table>
     <tr>

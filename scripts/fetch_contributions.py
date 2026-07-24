@@ -8,7 +8,6 @@ from datetime import datetime, timedelta
 USERNAME = "code-with-hashimm"
 
 def fetch_contributions(username=USERNAME):
-    # Fetch full year profile contribution page
     url = f"https://github.com/users/{username}/contributions"
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -22,9 +21,8 @@ def fetch_contributions(username=USERNAME):
         return
 
     soup = BeautifulSoup(response.text, "html.parser")
-    days = []
+    parsed_days = {}
 
-    # Modern GitHub calendar uses <td class="ContributionCalendar-day"> or <rect class="ContributionCalendar-day">
     calendar_cells = soup.find_all(attrs={"data-date": True})
 
     for cell in calendar_cells:
@@ -35,10 +33,7 @@ def fetch_contributions(username=USERNAME):
         level_str = cell.get("data-level", "0")
         level = int(level_str) if level_str.isdigit() else 0
 
-        # Extract contribution count from cell attributes, tooltips, or text content
         count = 0
-        
-        # Check tooltips or aria-label/text
         text_to_search = cell.get_text() or ""
         tool_tip_id = cell.get("aria-describedby") or cell.get("id")
         
@@ -47,7 +42,6 @@ def fetch_contributions(username=USERNAME):
             if tooltip:
                 text_to_search += " " + tooltip.text.strip()
         
-        # Fallback to searching nearby <tool-tip> custom elements
         parent = cell.parent
         if parent:
             text_to_search += " " + parent.get_text()
@@ -55,64 +49,49 @@ def fetch_contributions(username=USERNAME):
         match = re.search(r'(\d+)\s+contribution', text_to_search, re.IGNORECASE)
         if match:
             count = int(match.group(1))
-        elif level > 0:
-            # Fallback estimation if level exists but count text wasn't extracted
-            count = level * 2
 
-        days.append({
-            "date": date_str,
-            "count": count,
-            "level": level
-        })
+        parsed_days[date_str] = {"date": date_str, "count": count, "level": level}
 
-    # Deduplicate by date
-    unique_days = {}
-    for d in days:
-        unique_days[d["date"]] = d
-    
-    sorted_days = [unique_days[k] for k in sorted(unique_days.keys())]
+    # Generate full 365-day continuous timeline up to today
+    today_dt = datetime.now()
+    all_dates = [(today_dt - timedelta(days=i)).strftime("%Y-%m-%d") for i in range(365)]
+    all_dates.reverse()
 
-    # Calculate totals and streaks
-    total_contributions = sum(d["count"] for d in sorted_days)
-    
-    current_streak = 0
-    longest_streak = 0
-    temp_streak = 0
+    days = []
+    max_count = max([parsed_days.get(d, {}).get("count", 0) for d in all_dates] or [1])
 
-    today = datetime.now().strftime("%Y-%m-%d")
-    yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+    for d_str in all_dates:
+        item = parsed_days.get(d_str, {"date": d_str, "count": 0, "level": 0})
+        cnt = item["count"]
+        lvl = item["level"]
 
-    for day in sorted_days:
-        if day["count"] > 0:
-            temp_streak += 1
-            if temp_streak > longest_streak:
-                longest_streak = temp_streak
-        else:
-            temp_streak = 0
+        # Calculate dynamic color intensity if level was not provided by GitHub
+        if lvl == 0 and cnt > 0:
+            if cnt <= 2:
+                lvl = 1
+            elif cnt <= 5:
+                lvl = 2
+            elif cnt <= 9:
+                lvl = 3
+            else:
+                lvl = 4
 
-    active_streak = 0
-    for day in reversed(sorted_days):
-        if day["count"] > 0:
-            active_streak += 1
-        else:
-            if day["date"] not in [today, yesterday]:
-                break
-    current_streak = active_streak
+        days.append({"date": d_str, "count": cnt, "level": lvl})
+
+    total_contributions = sum(d["count"] for d in days)
 
     data = {
         "username": username,
-        "updated_at": today,
+        "updated_at": today_dt.strftime("%Y-%m-%d"),
         "total": total_contributions,
-        "current_streak": current_streak,
-        "longest_streak": longest_streak,
-        "days": sorted_days
+        "days": days
     }
 
     os.makedirs("data", exist_ok=True)
     with open("data/contributions.json", "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
 
-    print(f"Success! Parsed {total_contributions} contributions across {len(sorted_days)} days.")
+    print(f"Success! Fetched {total_contributions} contributions across 365 days.")
 
 if __name__ == "__main__":
     fetch_contributions()
